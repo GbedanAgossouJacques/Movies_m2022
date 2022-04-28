@@ -15,6 +15,6 @@ namespace Movies_m2022.Data
         {
         }
 
-        public DbSet<Movies_m2022.Models.Movie> Movie { get; set; }
+        public DbSet<Movie> Movie { get; set; }
     }
 }

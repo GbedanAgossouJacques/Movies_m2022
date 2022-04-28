@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Movies_m2022.Data;
+using Movies_m2022.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MoviesContext>(options =>
@@ -10,6 +12,15 @@ builder.Services.AddDbContext<MoviesContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Ajout des données intiniales 
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
